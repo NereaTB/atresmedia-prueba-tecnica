@@ -8,11 +8,13 @@ function App() {
   const [selectedBreed, setSelectedBreed] = useState<string>();
   const [allImages, setAllImages] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isHomePageLoading, setIsHomePageLoading] = useState<boolean>(false);
 
   const imagesPerPage = 9;
 
   const fetchBreeds = async () => {
     try {
+      setIsHomePageLoading(true);
       const response = await fetch("https://dog.ceo/api/breeds/list/all");
 
       if (!response.ok) {
@@ -22,7 +24,10 @@ function App() {
       const breedsArray = Object.keys(result.message);
       setBreeds(breedsArray);
     } catch {
+      setIsHomePageLoading(false);
       throw new Error("Las razas no han podido ser cargadas");
+    } finally {
+      setIsHomePageLoading(false);
     }
   };
 
@@ -75,6 +80,10 @@ function App() {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  if (isHomePageLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="homePage">
