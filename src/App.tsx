@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import "./App.css";
+import { ImageGallery } from "./components/ImageGallery/ImageGallery";
+import { SelectInput } from "./components/SelectInput/SelectInput";
 
 function App() {
   const [breeds, setBreeds] = useState<string[]>([]);
@@ -37,7 +39,7 @@ function App() {
     }
   };
 
-  const handleSelectBreed = (event) => {
+  const handleSelectBreed = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedBreed(event.target.value);
   };
 
@@ -52,23 +54,9 @@ function App() {
   }, [selectedBreed]);
 
   return (
-    <div>
-      {
-        <select name="breeds" onChange={handleSelectBreed}>
-          {breeds.map((breed) => {
-            return (
-              <option key={breed} value={breed}>
-                {breed}
-              </option>
-            );
-          })}
-        </select>
-      }
-      <section>
-        {selectedImages?.map((image) => {
-          return <img key={image} src={image} />;
-        })}
-      </section>
+    <div className="homePage">
+      <SelectInput onChange={handleSelectBreed} items={breeds} />
+      {selectedImages && <ImageGallery images={selectedImages} />}
     </div>
   );
 }
