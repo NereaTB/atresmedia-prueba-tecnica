@@ -2,13 +2,14 @@ import { useState, useEffect, ChangeEvent } from "react";
 import "./App.css";
 import { ImageGallery } from "./components/ImageGallery/ImageGallery";
 import { SelectInput } from "./components/SelectInput/SelectInput";
+import { Loader } from "./components/Loader/Loader";
 
 function App() {
   const [breeds, setBreeds] = useState<string[]>([]);
   const [selectedBreed, setSelectedBreed] = useState<string>();
   const [allImages, setAllImages] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isHomePageLoading, setIsHomePageLoading] = useState<boolean>(false);
+  const [isHomePageLoading, setIsHomePageLoading] = useState<boolean>(true);
 
   const imagesPerPage = 9;
 
@@ -24,7 +25,6 @@ function App() {
       const breedsArray = Object.keys(result.message);
       setBreeds(breedsArray);
     } catch {
-      setIsHomePageLoading(false);
       throw new Error("Las razas no han podido ser cargadas");
     } finally {
       setIsHomePageLoading(false);
@@ -82,7 +82,7 @@ function App() {
   };
 
   if (isHomePageLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   return (
