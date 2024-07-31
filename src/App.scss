@@ -8,6 +8,13 @@ body {
 }
 
 .app {
+  &__noSelection {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__content {
     max-width: 1280px;
     margin: 0 auto;

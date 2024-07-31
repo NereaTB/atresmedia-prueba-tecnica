@@ -103,7 +103,11 @@ function App() {
           />
           <SelectInput onChange={handleSelectBreed} items={breeds} />
         </section>
-        {paginatedImages && <ImageGallery images={paginatedImages} />}
+          {selectedBreed ? (
+            <ImageGallery images={paginatedImages} />
+          ) : (
+            <p className="app__noSelection">No Breed Selected</p>
+          )}
       </div>
       <Footer />
     </div>
