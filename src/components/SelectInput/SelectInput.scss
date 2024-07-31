@@ -7,3 +7,16 @@
     height: 25px;
   }
 }
+
+@media (width < 768px) {
+  .selectInput {
+    display: flex;
+    flex-direction: column;
+
+    &__label {
+      margin-bottom: 8px;
+    }
+
+    margin-bottom: 16px;
+  }
+}

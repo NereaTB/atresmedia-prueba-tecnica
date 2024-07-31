@@ -4,6 +4,8 @@ import { ImageGallery } from "./components/ImageGallery/ImageGallery";
 import { SelectInput } from "./components/SelectInput/SelectInput";
 import { Loader } from "./components/Loader/Loader";
 import { PaginationButtons } from "./components/PaginationButtons/PaginationButtons";
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   const [breeds, setBreeds] = useState<string[]>([]);
@@ -88,18 +90,22 @@ function App() {
 
   return (
     <div className="app">
-      <section className="app__topBar">
-        <PaginationButtons
-          handlePrevPage={handlePrevPage}
-          handleNextPage={handleNextPage}
-          isPageLimitBegin={isPageLimitBegin}
-          isPageLimitEnd={isPageLimitEnd}
-          currentPage={currentPage}
-          isPageCounterActive={Boolean(selectedBreed)}
-        />
-        <SelectInput onChange={handleSelectBreed} items={breeds} />
-      </section>
-      {paginatedImages && <ImageGallery images={paginatedImages} />}
+      <Header />
+      <div className="app__content">
+        <section className="app__topBar">
+          <PaginationButtons
+            handlePrevPage={handlePrevPage}
+            handleNextPage={handleNextPage}
+            isPageLimitBegin={isPageLimitBegin}
+            isPageLimitEnd={isPageLimitEnd}
+            currentPage={currentPage}
+            isPageCounterActive={Boolean(selectedBreed)}
+          />
+          <SelectInput onChange={handleSelectBreed} items={breeds} />
+        </section>
+        {paginatedImages && <ImageGallery images={paginatedImages} />}
+      </div>
+      <Footer />
     </div>
   );
 }

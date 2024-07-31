@@ -1,16 +1,34 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .app {
+  &__content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px;
+    min-height: calc(100vh - 200px); // Height - (topBar + footer)
+  }
+
   &__topBar {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 32px;
+  }
+}
+
+@media (width < 768px) {
+  .app {
+    &__topBar {
+      flex-direction: column-reverse;
+      margin-bottom: 16px;
+    }
   }
 }
