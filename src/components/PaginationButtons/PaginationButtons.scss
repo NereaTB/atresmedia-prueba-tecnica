@@ -1,0 +1,15 @@
+.paginationButtons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &__button {
+    font-size: 12px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 25px;
+    text-transform: uppercase;
+    border: inherit;
+    padding: 2px 16px;
+  }
+}

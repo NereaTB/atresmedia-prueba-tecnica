@@ -1,4 +1,5 @@
-import {ChangeEventHandler} from 'react'
+import { ChangeEventHandler } from "react";
+import "./SelectInput.scss";
 
 interface SelectInputProps {
   items: string[];
@@ -7,14 +8,17 @@ interface SelectInputProps {
 
 export const SelectInput = ({ items, onChange }: SelectInputProps) => {
   return (
-    <select name="breeds" onChange={onChange}>
-      {items.map((item) => {
-        return (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        );
-      })}
-    </select>
+    <div className="selectInput">
+      <label className="selectInput__label">Select your favorite breed:</label>
+      <select name="breeds" onChange={onChange} className="selectInput__input">
+        {items.map((item) => {
+          return (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
 };
